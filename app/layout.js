@@ -21,7 +21,7 @@ export default function RootLayout({ children }) {
       <html lang="en">
         <body className={`${roboto.variable} antialiased text-blue-900`}>
           <Header />
-          <main className="min-h-screen w-full container mx-auto bg-gradient-to-br from-cyan-300 to-cyan-100">
+          <main className="min-h-screen w-full container mx-auto bg-gradient-to-br from-cyan-100 to-cyan-100/30 pb-20">
             {children}
           </main>
           <Footer />

@@ -7,7 +7,7 @@ import CustomUserMenu from './custom-userMenu'
 
 const Header = () => {
   return (
-    <header className='h-14 w-full container mx-auto bg-cyan-200 flex justify-between items-center px-4 sm:px-10 md:px-16'>
+    <header className='h-14 w-full border-b border-cyan-400 container mx-auto bg-cyan-200 flex justify-between items-center px-4 sm:px-10 md:px-16'>
 
         <Link href={"/"}>
         <div className="logo font-black text-xl sm:text-2xl ">
@@ -25,7 +25,12 @@ const Header = () => {
                 </SignUpButton>
             </SignedOut>
             <SignedIn>
-                <Button className={"bg-cyan-300 hover:bg-cyan-400 text-blue-800"}><PenBox/>Add Event</Button>
+                <Link href={"/events?create=true"}>
+                <Button 
+                className={"bg-cyan-300 hover:bg-cyan-400 text-blue-800"}>
+                    <PenBox/>Add Event
+                </Button>
+                </Link>
               <CustomUserMenu />
             </SignedIn>
         </div>
