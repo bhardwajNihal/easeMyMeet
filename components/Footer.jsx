@@ -4,7 +4,7 @@ import { FaXTwitter } from "react-icons/fa6";
 
 const Footer = () => {
   return (
-    <footer className="h-20 border-t border-blue-800 flex flex-col justify-center items-center text-sm gap-2 bg-cyan-200">
+    <footer className="h-20 border-t border-cyan-200 flex flex-col justify-center items-center text-sm gap-2 bg-gradient-to-r from-transparent via-cyan-200 to-transparent">
         <div className="flex gap-2 sm:gap-6 justify-center items-center">
           <p>Made with ❤️ by Nihal Bhardwaj.</p>
           <a target="_blank" href="https://x.com/bhardwajnihal21" ><FaXTwitter className="hover:text-blue-400 text-lg"/></a>

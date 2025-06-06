@@ -4,10 +4,15 @@ import { SignedIn, SignedOut, SignInButton, SignUpButton } from '@clerk/nextjs'
 import { Button } from './ui/button'
 import { PenBox } from 'lucide-react'
 import CustomUserMenu from './custom-userMenu'
+import { checkUser } from '@/lib/checkUser'
 
-const Header = () => {
+const Header = async() => {
+
+  // check if user entry in db
+  await checkUser();
+
   return (
-    <header className='h-14 w-full border-b border-cyan-400 container mx-auto bg-cyan-200 flex justify-between items-center px-4 sm:px-10 md:px-16'>
+    <header className='h-14 w-full border-b border-cyan-200 backdrop-blur bg-gradient-to-r from-cyan-200 to-transparent flex justify-between items-center px-4 sm:px-10 md:px-16 fixed top-0 z-50'>
 
         <Link href={"/"}>
         <div className="logo font-black text-xl sm:text-2xl ">

@@ -1,6 +1,6 @@
 import { PrismaClient } from "@prisma/client";
 
-const DbClient = globalThis.prisma || new PrismaClient();
+export const DbClient = globalThis.prisma || new PrismaClient();
 
 // basically in the development environment
 // avoid creating duplicate instances on every hot reload

@@ -2,6 +2,7 @@ import { Calendar, Clock, LinkIcon, Bell, ArrowRight } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
 import TestimonialsCarousel from "@/components/Testimonials";
+import Footer from "@/components/Footer";
 
 const features = [
   {
@@ -52,7 +53,7 @@ const workings = [
 
 export default function Home() {
   return (
-    <div className="px-4 sm:px-10 md:px-16">
+    <div className="w-full px-4 sm:px-10 md:px-16">
       <div className="hero-section min-h-screen flex flex-col gap-2 md:flex-row">
 
         <div className="hero-text mt-16 md:mt-0 min-h-full w-full md:w-1/2 flex flex-col justify-center items-center md:items-start gap-4">
@@ -104,7 +105,7 @@ export default function Home() {
       </div>
 
 
-      <div className="lastmessage bg-cyan-200 p-8 flex flex-col gap-2 border border-blue-600 mt-24 rounded-lg px-12 mx-auto w-[90%]">
+      <div className="lastmessage bg-cyan-200 p-8 flex flex-col gap-2 border border-blue-600 mt-24 rounded-lg px-12 mx-auto w-[90%] mb-24">
           <h2 className="text-xl font-bold">Ready to start easing your meets?</h2>
           <h3>Join the community of thousands of individuals organizing there events seamlessly through <b>easeMyMeet</b></h3>
           <Link href={"/sign-in"}>
@@ -114,7 +115,7 @@ export default function Home() {
       </div>
 
 
-
+      <Footer />
 
     </div>
 
