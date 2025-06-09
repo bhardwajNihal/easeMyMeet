@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { toast } from "sonner";
 
 
 export default function useFetch(cb) {
@@ -17,6 +18,7 @@ export default function useFetch(cb) {
             setData(response);
         } catch (error) {
             setError(error);
+            toast.error(error?.message,{richColors:true})
         }
         finally{
             setLoading(false);

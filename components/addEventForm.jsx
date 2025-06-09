@@ -15,9 +15,10 @@ import { Textarea } from './ui/textarea';
 import useFetch from '@/customHooks/useFetch';
 import { ClipLoader } from 'react-spinners';
 import { useRouter } from 'next/navigation';
+import { toast } from 'sonner';
 
 
-const AddEventForm = () => {
+const AddEventForm = ({handleDrawerClose}) => {
     const router = useRouter();
 
     const {
@@ -48,13 +49,17 @@ const AddEventForm = () => {
     }
 
     useEffect(()=> {
-        if(!addingEvent && addedEventData) alert("event added successfully!");  
+        if(!addingEvent && addedEventData) {
+        handleDrawerClose();
+        toast.success("Event added successfully!", {richColors:true});    
         router.refresh();       // refresh the events page to show new event added  
+        }  
+        
     }, [addedEventData, addingEvent])
 
 
     return (
-        <form onSubmit={handleSubmit(handleAddEvent)} className='p-4 my-4 bg-white rounded-lg'>
+        <form onSubmit={handleSubmit(handleAddEvent)} className='p-4 my-4 bg-white rounded-lg max-h-full overflow-hidden overflow-y-auto'>
             {addEventError && <p className="text-red-500 text-xs mt-1">{addEventError.message}</p>}
             <div>
                 <label

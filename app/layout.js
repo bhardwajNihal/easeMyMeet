@@ -1,6 +1,6 @@
 import { Roboto_Mono } from "next/font/google";
 import "./globals.css";
-import Footer from "@/components/Footer";
+import { Toaster } from "sonner";
 import Header from "@/components/Header";
 import { ClerkProvider } from "@clerk/nextjs";
 
@@ -24,6 +24,7 @@ export default function RootLayout({ children }) {
           <main className="min-h-screen w-full bg-gradient-to-br from-cyan-100 to-cyan-100/30">
             {children}
           </main>
+          <Toaster/>
         </body>
       </html>
     </ClerkProvider>

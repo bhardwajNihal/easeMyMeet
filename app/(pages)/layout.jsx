@@ -39,7 +39,7 @@ const PageLayout = ({ children }) => {
 
             <main className="page-content w-full min-h-full mt-14 ">{children}</main>
 
-            <div className="foot-menu absolute h-16 w-full bottom-0 left-0 z-50 block bg-cyan-200/40 border-r border-cyan-300 md:hidden">
+            <div className="foot-menu fixed backdrop-blur-lg h-16 w-full bottom-0 left-0 z-50 block bg-cyan-200/40 border-r border-cyan-300 md:hidden">
                 <ul className='w-full h-full flex justify-evenly'>
                     {routes.map((route, index) =>
                         <li

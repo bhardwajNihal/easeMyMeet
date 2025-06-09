@@ -8,19 +8,30 @@ import { DialogTitle } from "@radix-ui/react-dialog"
 import { useSearchParams } from "next/navigation"
 import { useRouter } from "next/navigation"
 import AddEventForm from "./addEventForm"
+import useFetch from "@/customHooks/useFetch"
+import { getAllEvents } from "@/actions/events"
 
-export function AddEventDrawer() {
+export function AddEventDrawer({reFetchEvents}) {
 
     const [open, setOpen] = useState(false);
     const searchParams = useSearchParams();
-    const create = searchParams.get("create");
     const router = useRouter();
 
     useEffect(() => {
-        if (create === "true") {
+        const shouldOpen = searchParams.get("create") === "true";
+
+        if (shouldOpen) {
             setOpen(true);
         }
-    }, [create])
+    }, [searchParams])
+
+    function handleDrawerClose(){
+        reFetchEvents();
+        setOpen(false);
+        if (searchParams.get("create") === "true") {
+            router.replace(window?.location.pathname)
+        }
+    }
 
 
     return (
@@ -36,7 +47,7 @@ export function AddEventDrawer() {
                 <DialogTitle className="text-center text-cyan-700 font-semibold text-xl sm:text-2xl">Add a new Event</DialogTitle>
                 <div className="mx-auto w-full max-w-sm">
 
-                    <AddEventForm/>
+                    <AddEventForm handleDrawerClose={handleDrawerClose}/>
 
                 </div>
             </DrawerContent>
