@@ -16,7 +16,7 @@ export async function getUserAvailability() {
     });
     if (!foundUser) throw new Error("user not found!");
 
-    const foundAvailability = await DbClient.Availability({
+    const foundAvailability = await DbClient.Availability.findUnique({
       where: {
         userId: foundUser.id,
       },
@@ -36,16 +36,17 @@ export async function getUserAvailability() {
 
     const formatedData = {
       timeGap: foundAvailability.timeGap,
-    }[
+    };
+    
+    [
       //loop through the weekdays, find if a day is available, if so set start and endtime
-
-      ("monday",
+      "monday",
       "tuesday",
       "wednesday",
       "thursday",
       "friday",
       "saturday",
-      "sunday")
+      "sunday"
     ].forEach((weekday) => {
       const dayAvailable = foundAvailability.days.find(
         (day) => day.day === weekday.toUpperCase()
@@ -98,7 +99,7 @@ try {
         });
         if (!foundUser) throw new Error("user not found!");
     
-        const foundAvailability = await DbClient.Availability({ //used further to
+        const foundAvailability = await DbClient.Availability.findUnique({ //used further to
           where: {
             userId: foundUser.id,
           }
@@ -120,7 +121,7 @@ try {
                 if(isAvailable){
     
                     //create a base date, to facilitate start and endTime to be stored as date format to db
-                    const baseDate = new Date().toISOString.split("T")[0]; // extract the date portion only
+                    const baseDate = new Date().toISOString().split("T")[0]; // extract the date portion only
     
                     return [
                         {
