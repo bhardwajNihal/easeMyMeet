@@ -16,7 +16,7 @@ const Header = async() => {
 
         <Link href={"/"}>
         <div className="logo font-black text-xl sm:text-2xl ">
-            easyMyMeet
+            easeMyMeet
         </div>
         </Link>
 

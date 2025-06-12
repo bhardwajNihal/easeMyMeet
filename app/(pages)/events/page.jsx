@@ -17,7 +17,6 @@ const Events = () => {
   const {
     data : eventsData,
     loading : FetchingEvents,
-    error : fetchEventsError, 
     fn : fetchEventsFn
   } = useFetch(getAllEvents)
 
@@ -64,6 +63,11 @@ const Events = () => {
   },[deletedEventData,deleteEventError, deletingEvent])
 
 
+  function handleEventClick(eventId){
+    window?.open(`${window?.location.origin}/${eventsData.username}/${eventId}`,"_blank");
+  }
+
+
   if(FetchingEvents) return <div className='min-h-screen w-full flex items-center justify-center'><ClipLoader color='cyan' size={"25px"}/></div>
 
   return (
@@ -72,9 +76,13 @@ const Events = () => {
 
         {/* fetch and display events */}
         <div className='h-full w-full grid grid-cols-1 sm:grid-cols-2 gap-6 mb-20 mt-4'>
-          {eventsData && eventsData?.events.length!==0 &&
-          eventsData.events.map((event) => 
+          {eventsData && eventsData?.events.length!==0
+
+          ? eventsData.events.map((event) => 
           <div 
+          onClick={(e) =>{
+            if(e.target.tagname !=="Button" || e.target.tagname !== "SVG") handleEventClick(event.id)
+          }}
           className='p-4 sm-p-6 bg-cyan-100 shadow shadow-gray-400 rounded-lg'
           key={event.id}>
 
@@ -91,17 +99,22 @@ const Events = () => {
 
             <div className='flex gap-2'>
               <button 
-              onClick={() => handleCopy(event.id, eventsData?.username)}
+              onClick={(e) => {
+                e.stopPropagation();
+                handleCopy(event.id, eventsData?.username);
+              }
+            }
               className='flex items-center gap-2 p-1 sm:py-1 sm:px-4 bg-gray-200/50 rounded border border-cyan-600 text-cyan-600 cursor-pointer hover:bg-cyan-200/50 duration-200'><Copy size={"15px"} color='#09A3B4'/><span>Copy Link</span></button>
             <button
             disabled={deletingEvent} 
-            onClick={() => {
+            onClick={(e) => {
+              e.stopPropagation();
               handleDelete(event.id)
             }}
             className='flex items-center gap-2 p-1 sm:py-1 sm:px-4 bg-gray-200/50 rounded border border-red-600 cursor-pointer hover:bg-red-200 duration-200 text-red-600'>{deletingEvent && deletingEventId==event.id ? <ClipLoader size={"15px"} color='red'/> : <Trash size={"15px"} color='red'/>}<span>Delete</span></button>
             </div>
           </div>)
-
+          : <div className='text-2xl font-semibold text-gray-500 text-center mt-28'>No events yet!</div>
         }
         </div>
 
