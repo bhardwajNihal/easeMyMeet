@@ -7,7 +7,7 @@ import React from 'react'
 
 // adding metaData, this public page needs to be SEO friendly
 export async function generateMetadata({params}){
-  const username = params.username;
+  const username = await params.username;
   const userData = await getUserByUsername(username);
 
   if (!userData) {

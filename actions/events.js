@@ -3,9 +3,7 @@
 import { DbClient } from "@/db/prismaClient";
 import { eventSchema } from "@/zodSchemas/eventSchema";
 import { auth } from "@clerk/nextjs/server";
-import { ReceiptRussianRuble } from "lucide-react";
 import { revalidatePath } from "next/cache";
-import { DevBundlerService } from "next/dist/server/lib/dev-bundler-service";
 
 export async function createEvent(data) {
   try {
@@ -120,4 +118,27 @@ export async function deleteEvent(eventId) {
     throw error;
   }
 
+}
+
+export async function getEventDetails(username, eventId){
+
+  const foundEvent = await DbClient.Event.findFirst({
+    where : {
+      id : eventId,
+      user : {
+        username : username
+      }
+    },
+    include : {
+      user : {
+        select : {
+          name : true,
+          email : true,
+          imageUrl : true
+        }
+      }
+    }
+  }) 
+
+  return foundEvent;
 }
