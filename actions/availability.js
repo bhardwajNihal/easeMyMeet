@@ -9,8 +9,7 @@ import {
   parseISO,
   startOfDay,
 } from "date-fns";
-import { Bokor } from "next/font/google";
-import { duration } from "zod/dist/types/v4/core/regexes";
+import { FaPersonWalkingDashedLineArrowRight } from "react-icons/fa6";
 
 export async function getUserAvailability() {
   try {
@@ -179,6 +178,8 @@ export async function updateAvailability(data) {
 
 // server action to provide available slots to book an event
 export async function getEventAvailability(eventId) {
+  
+  
   // find the event based on eventId
   // populate it with user, go deep into user, populate with availability(include days and timegap) and  bookings (include start and end time)
   const foundEvent = await DbClient.Event.findUnique({
@@ -219,14 +220,12 @@ export async function getEventAvailability(eventId) {
   for (let date = startDate; date <= endDate; date = addDays(date, 1)) {
     // convert date to the weekday, check if the day is present in the availability.days
     const weekDay = format(date, "EEEE").toUpperCase();
-    const dayAvailable = await availability?.days?.find(
-      (d) => d.day === weekDay
-    );
-
+    const dayAvailable = availability.days.find(day => day.day === weekDay) 
     // now, if the day is available, generate slots for that day
     if (dayAvailable) {
-      const dateStr = format(date, "yyyy MM dd");
-
+      
+      const dateStr = format(date, "yyyy-MM-dd");
+      
       const availableSlots = await generateAvailableSlots(
         dateStr,
         dayAvailable.startTime,
@@ -243,8 +242,8 @@ export async function getEventAvailability(eventId) {
       });
     }
 
-    return availableDates;
   }
+  return availableDates;
 }
 
 // now the helper function to generate available slots for the given date
@@ -253,18 +252,18 @@ async function generateAvailableSlots(
   dateStr,
   startTime,
   endTime,
-  timeGap = 0,
   bookings,
+  timeGap = 0,
   eventDuration
 ) {
   const slots = []; // maintain a slots array
 
   // time pointer to loop through the start and endtime
   let currentTime = parseISO(
-    `${dateStr}T${startTime.toISOString().slice(11, 16)}` // maintain uniformity in the date format
+    `${dateStr}T${startTime.toISOString().slice(11, 16)}:00.000Z` // maintain uniformity in the date format
   );
   const slotEndTime = parseISO(
-    `${dateStr}T${endTime.toISOString().slice(11, 16)}`
+    `${dateStr}T${endTime.toISOString().slice(11, 16)}:00.000Z`
   );
 
   // if the date is today, check if the the current time is more than the startTime
@@ -307,3 +306,4 @@ async function generateAvailableSlots(
   //finally return all the available slots
   return slots;
 }
+ 

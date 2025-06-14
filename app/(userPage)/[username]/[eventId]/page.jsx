@@ -1,6 +1,6 @@
-
+import { getEventAvailability } from '@/actions/availability';
 import { getEventDetails } from '@/actions/events';
-import BookingFrom from '@/components/BookingFrom';
+import BookingForm from '@/components/BookingForm';
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
 import { Calendar, Clock } from 'lucide-react';
 import { notFound } from 'next/navigation';
@@ -27,6 +27,7 @@ const EventBookingPage = async({params}) => {
     const eventId = await params.eventId;
     const eventdetails = await getEventDetails(username,eventId);
     console.log(eventdetails);
+    const eventAvailability = await getEventAvailability(eventId)
     
 
     if(!eventdetails){
@@ -34,11 +35,11 @@ const EventBookingPage = async({params}) => {
     }
     
   return (
-    <div className='mt-14 min-h-screen w-full flex items-center justify center px-8 sm:px-20 lg:px-32'>
+    <div className='mt-14 min-h-screen w-full flex items-center justify center px-4 sm:px-16 lg:px-28'>
         
-        <div className='w-full grid grid-cols-1 md:grid-cols-2 p-4 py-6 bg-gray-100/50 rounded-lg shadow-sm shadow-gray-400'>
+        <div className='w-full grid grid-cols-1 lg:grid-cols-2 gap-4 sm:p-4 py-6 bg-gray-100/50 rounded-lg shadow-sm shadow-gray-400'>
 
-            <div className="details space-y-2 md:border-r border-gray-500">
+            <div className="details space-y-2 lg:border-r border-gray-500 bg-white p-4 rounded my-2 h-fit ">
                 <h1 className='text-2xl font-bold'>{eventdetails?.title}</h1>
                 
                 <div className='flex items-center gap-2'>
@@ -58,8 +59,8 @@ const EventBookingPage = async({params}) => {
                 <p className='text-gray-700'>{eventdetails.description}</p>
                 
             </div>
-            <div className="bookingform bg-red-500">
-                <BookingFrom />
+            <div className="bookingform">
+                <BookingForm event={eventdetails} eventAvailability={eventAvailability} />
             </div>
         </div>
     </div>
