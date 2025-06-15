@@ -7,8 +7,8 @@ import { notFound } from 'next/navigation';
 import React from 'react'
 
 export async function generateMetadata({params}){
-  const username = params.username;
-  const eventId = params.eventId
+  const username = await params.username;
+  const eventId = await params.eventId
   const eventData = await getEventDetails(username, eventId);
 
   if (!eventData) {
@@ -26,7 +26,7 @@ const EventBookingPage = async({params}) => {
     const username = await params.username;
     const eventId = await params.eventId;
     const eventdetails = await getEventDetails(username,eventId);
-    console.log(eventdetails);
+    // console.log(eventdetails);
     const eventAvailability = await getEventAvailability(eventId)
     
 

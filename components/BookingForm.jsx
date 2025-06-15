@@ -10,6 +10,9 @@ import { useForm } from 'react-hook-form'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { bookingSchema } from '@/zodSchemas/bookingSchema'
 import { toast } from 'sonner'
+import useFetch from '@/customHooks/useFetch'
+import { createBooking } from '@/actions/bookings'
+import { ClipLoader } from 'react-spinners'
 
 
 const BookingForm = ({ event, eventAvailability }) => {
@@ -22,6 +25,7 @@ const BookingForm = ({ event, eventAvailability }) => {
     register,
     handleSubmit,
     setValue, 
+    reset,
     formState : {errors}
   } = useForm({
     resolver : zodResolver(bookingSchema)
@@ -42,24 +46,32 @@ const BookingForm = ({ event, eventAvailability }) => {
 
   useEffect(() => {
     setValue("time", selectedTime)
-    console.log(selectedTime);
+    // console.log(selectedTime);
 
   }, [selectedTime])
 
-  useEffect(() => {
-    console.log(slots);
+  // useEffect(() => {
+  //   console.log(slots);
 
-  }, [slots])
+  // }, [slots])
 
-  console.log("event : ", event);
-  console.log("event availability : ", eventAvailability);
+  // console.log("event : ", event);
+  // console.log("event availability : ", eventAvailability);
 
   // get available dates, feed it to the day picker to highlight available dates
   const availableDays = eventAvailability.map(day => new Date(day.date));
-  console.log(availableDays);
+  // console.log(availableDays);
+
+  const {
+    data : BookedData,
+    loading : createBookingLoading,
+    fn : createBookingFn
+  } = useFetch(createBooking)
+
 
   async function handleBooking(data){
-
+    // console.log("form data : ",data);
+    
     if(!selectedDate && !selectedTime){
       toast.error("Date and time both are required!")
       return;
@@ -78,9 +90,19 @@ const BookingForm = ({ event, eventAvailability }) => {
       endTime
     }
 
-    console.log("submission : ",bookingSubmissionData);
+    createBookingFn(bookingSubmissionData)
     
   }
+
+  useEffect(() => {
+    if(BookedData && !createBookingLoading){
+      reset();
+      setSelectedDate(null);
+      setSelectedTime(null);
+      toast.success("Event booked successfully!")
+    }
+
+  },[BookedData, createBookingLoading])
 
 
 
@@ -133,7 +155,10 @@ const BookingForm = ({ event, eventAvailability }) => {
           <Textarea {...register("additionalInfo")} placeholder="Additional Info (optional)"/>
           {errors?.additionalInfo && <p className='text-sm text-red-500'>{errors?.additionalInfo?.message}</p>}
 
-          <button className='bg-cyan-300 w-fit py-2 px-6 rounded-lg'>Submit</button>
+          <button
+          disabled={createBookingLoading}
+          className='bg-cyan-300 w-fit py-2 px-6 rounded-lg'>
+            {createBookingLoading ? <ClipLoader size="15px" color='darkblue'/> : "Submit"}</button>
         </form>
 
         </div>}

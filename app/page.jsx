@@ -60,7 +60,7 @@ export default function Home() {
           <h2 className="text-6xl md:text-7xl font-black">Focus on Meets. <br /><span className="text-5xl">That's it!</span></h2>
           <p className="text-lg font-semibold sm:text-xl">Rest will be taken care of by us.</p>
 
-          <Link href={"/sign-in"}>
+          <Link href={"/dashboard"}>
             <button className="bg-cyan-300 text-blue-800 flex gap-2 px-4 py-2 rounded-lg hover:bg-cyan-400 cursor-pointer font-semibold ">
               Get Started <ArrowRight />
             </button>

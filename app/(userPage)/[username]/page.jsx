@@ -24,7 +24,7 @@ export async function generateMetadata({params}){
 // a route displaying user profile and all the public events available to book 
 const UserPage = async ({ params }) => {
 
-  const username = params.username;
+  const username = await params.username;
   const userData = await getUserByUsername(username);
 
   if (!userData) {
