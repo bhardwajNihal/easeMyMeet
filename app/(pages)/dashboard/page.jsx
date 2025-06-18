@@ -1,21 +1,32 @@
 
 "use client"
-import React, { useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
 import { useUser } from '@clerk/nextjs'
 import { Input } from '@/components/ui/input';
 import { Pencil } from 'lucide-react';
 import { useForm } from 'react-hook-form';
 import {zodResolver} from "@hookform/resolvers/zod"
 import { usernameSchema } from '@/zodSchemas/usernameSchema';
-import { Island_Moments } from 'next/font/google';
 import useFetch from '@/customHooks/useFetch';
 import { updateUsername } from '@/actions/updateUsername';
 import { ClipLoader } from 'react-spinners';
+import { getMeetings } from '@/actions/meetings';
+import { format } from 'date-fns';
 
 
 const Dashboard = () => {
 
   const {isLoaded,user} = useUser();
+  const [upcomingMeetings, setUpcomingMeetings] = useState([]);
+
+  async function fetchUpcomingMeetings() {
+    const res = await getMeetings("upcoming");
+    setUpcomingMeetings(res);
+  }
+
+  useEffect(() => {
+    fetchUpcomingMeetings();
+  },[])
 
   const{
     register,
@@ -45,7 +56,13 @@ const Dashboard = () => {
         <h2 className='text-3xl sm:text-4xl font-black text-cyan-600'>Dashboard</h2>
 
         <div className="welcome bg-cyan-100 p-2 rounded my-4 shadow shadow-gray-300">
-          <h2>Welcome, <span className='font-semibold'>{user.fullName ? user.fullName : user.username}</span></h2>
+          <h2 className='text-lg'>Welcome, <span className='font-semibold'>{user.fullName ? user.fullName : user.username}</span></h2>
+          <div>
+            {upcomingMeetings && upcomingMeetings.length>0 
+              ? upcomingMeetings.map(m => (<p className='text-sm text-gray-600 mt-2' key={m.id}>- <b>{m?.event?.title}</b> with {m?.name} on {format(new Date(m?.startTime), "MMM d, yyyy")} at {format(new Date(m?.endTime), "h:mm a")}</p>))
+              : <p>No upcoming meetings.</p>
+            }
+          </div>
         </div>
 
         <div className="link bg-cyan-100 p-2 py-4 rounded my-4 shadow shadow-gray-300">
