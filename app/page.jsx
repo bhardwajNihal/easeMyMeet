@@ -56,8 +56,8 @@ export default function Home() {
     <div className="w-full px-4 sm:px-10 md:px-16">
       <div className="hero-section min-h-screen flex flex-col gap-2 md:flex-row">
 
-        <div className="hero-text mt-16 md:mt-0 min-h-full w-full md:w-1/2 flex flex-col justify-center items-center md:items-start gap-4">
-          <h2 className="text-6xl md:text-7xl font-black">Focus on Meets. <br /><span className="text-5xl">That's it!</span></h2>
+        <div className="hero-text pr-8 mt-16 md:mt-0 min-h-full w-full md:w-1/2 flex flex-col justify-center items-center md:items-start gap-4">
+          <h2 className="text-6xl md:text-7xl font-black ">Focus on <span className="text-cyan-500">Meets.</span> <br /><span className="text-5xl">That's it!</span></h2>
           <p className="text-lg font-semibold sm:text-xl">Rest will be taken care of by us.</p>
 
           <Link href={"/dashboard"}>

@@ -3,7 +3,7 @@
 import React, { useEffect, useState } from 'react'
 import { useUser } from '@clerk/nextjs'
 import { Input } from '@/components/ui/input';
-import { Pencil } from 'lucide-react';
+import { Copy, Pencil } from 'lucide-react';
 import { useForm } from 'react-hook-form';
 import {zodResolver} from "@hookform/resolvers/zod"
 import { usernameSchema } from '@/zodSchemas/usernameSchema';
@@ -17,6 +17,8 @@ import { format } from 'date-fns';
 const Dashboard = () => {
 
   const {isLoaded,user} = useUser();
+  console.log(user);
+  
   const [upcomingMeetings, setUpcomingMeetings] = useState([]);
 
   async function fetchUpcomingMeetings() {
@@ -66,7 +68,14 @@ const Dashboard = () => {
         </div>
 
         <div className="link bg-cyan-100 p-2 py-4 rounded my-4 shadow shadow-gray-300">
-          <h2 className='text-lg font-semibold mb-2'>Your Unique Link</h2>
+          <div className='flex gap-2'>
+            <h2 className='text-lg font-semibold mb-2'>Your Unique Link</h2>
+            <Copy 
+            onClick={() => {
+              navigator.clipboard.writeText(`${window?.location.origin}/${user?.username}/`);
+            }}
+            size={"18px"} color='darkblue'/>
+          </div>
 
           {/* form to update username */}
           <form onSubmit={handleSubmit(handleUpdateUsername)}>

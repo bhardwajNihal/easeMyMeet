@@ -32,7 +32,7 @@ const Header = async () => {
         <SignedIn>
 
           <Link href={"/dashboard"}>
-            <button className="py-2 px-6 text-blue-600 hover:underline cursor-pointer">Dashboard</button>
+            <button className="py-2 px-6 text-blue-700 hover:underline cursor-pointer">Dashboard</button>
           </Link>
 
           <Link href={"/events?create=true"}>

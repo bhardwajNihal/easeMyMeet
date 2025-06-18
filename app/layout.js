@@ -1,10 +1,10 @@
-import { Roboto_Mono } from "next/font/google";
+import { Roboto_Slab } from "next/font/google";
 import "./globals.css";
 import { Toaster } from "sonner";
 import Header from "@/components/Header";
 import { ClerkProvider } from "@clerk/nextjs";
 
-const roboto = Roboto_Mono({
+const roboto = Roboto_Slab({
   variable: "--font-roboto",
   subsets: ["latin"],
 });
