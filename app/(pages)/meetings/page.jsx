@@ -1,9 +1,29 @@
+import { getMeetings } from '@/actions/meetings'
+import MeetingsList from '@/components/meetingsList'
+import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs'
 import React from 'react'
 
-const Meetings = () => {
+const Meetings = async() => { 
+
+  const upcomingMeetings = await getMeetings("upcoming");
+  const pastMeetings = await getMeetings("past");
+
   return (
-    <div>
-        <h2 className='text-3xl sm:text-4xl font-black text-cyan-600 m-4'>Meetings</h2>
+    <div className='p-6'>
+        <h2 className='text-3xl sm:text-4xl font-black text-cyan-600 mb-4'>Meetings</h2>
+
+         <Tabs defaultValue="upcoming">
+        <TabsList>
+          <TabsTrigger value="upcoming">upcoming</TabsTrigger>
+          <TabsTrigger value="past">past</TabsTrigger>
+        </TabsList>
+        <TabsContent value="upcoming">
+          <MeetingsList meetings={upcomingMeetings} type={"upcoming"}/>
+        </TabsContent>
+        <TabsContent value="past">
+          <MeetingsList meetings={pastMeetings} type={"past"}/>
+        </TabsContent>
+      </Tabs>
     </div>
   )
 }

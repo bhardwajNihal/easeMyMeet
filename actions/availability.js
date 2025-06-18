@@ -256,6 +256,7 @@ async function generateAvailableSlots(
   timeGap = 0,
   eventDuration
 ) {
+  
   const slots = []; // maintain a slots array
 
   // time pointer to loop through the start and endtime
@@ -283,8 +284,9 @@ async function generateAvailableSlots(
 
     // check if the slot overlaps with any bookings, if not, then the slot is available, push it to the slots
     const isSlotAvailable = !bookings.some((booking) => {
-      bookingStartTime = booking.startTime;
-      bookingEndTime = booking.endTime;
+      
+      const bookingStartTime = booking[0]?.startTime;
+      const bookingEndTime = booking[0]?.endTime;
 
       // if any of the following condition is true --> means slot is unavailable
       return (
