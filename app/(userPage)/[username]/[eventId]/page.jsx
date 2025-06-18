@@ -43,7 +43,7 @@ const EventBookingPage = async({params}) => {
                 <h1 className='text-2xl font-bold'>{eventdetails?.title}</h1>
                 
                 <div className='flex items-center gap-2'>
-                    <Avatar className={'h-11 w-11'}>
+                    <Avatar className={'h-11 w-11 object-cover'}>
                         <AvatarImage src={eventdetails?.user.imageUrl} alt={eventdetails?.user.name}/>
                         <AvatarFallback>
                             {eventdetails.user.name.charAt(0).toUpperCase()}

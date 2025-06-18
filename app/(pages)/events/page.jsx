@@ -3,7 +3,7 @@
 import { deleteEvent, getAllEvents } from '@/actions/events'
 import { AddEventDrawer } from '@/components/addEventDrawer'
 import useFetch from '@/customHooks/useFetch'
-import { Copy, Trash } from 'lucide-react'
+import { ArrowRight, Copy, Trash } from 'lucide-react'
 import { useRouter } from 'next/navigation'
 import React, { useEffect, useState } from 'react'
 import { ClipLoader } from 'react-spinners'
@@ -26,7 +26,7 @@ const Events = () => {
 
   useEffect(() => {
     if(eventsData && !FetchingEvents){
-      console.log(eventsData);
+      // console.log(eventsData);
     }
   },[eventsData, FetchingEvents])
 
@@ -73,7 +73,7 @@ const Events = () => {
   return (
     <div className='pt-6 px-8'>
         <h2 className='text-3xl sm:text-4xl font-black text-cyan-600'>Events</h2>
-
+          {eventsData && <p className='text-sm text-gray-500 mt-2'>Click an Event to book.</p>}
         {/* fetch and display events */}
         <div className='h-full w-full grid grid-cols-1 sm:grid-cols-2 gap-6 mb-20 mt-4'>
           {eventsData && eventsData?.events.length!==0
@@ -83,7 +83,7 @@ const Events = () => {
           onClick={(e) =>{
             if(e.target.tagname !=="Button" || e.target.tagname !== "SVG") handleEventClick(event.id)
           }}
-          className='p-4 sm-p-6 bg-cyan-100 shadow shadow-gray-400 rounded-lg'
+          className=' p-4 sm-p-6 bg-gray-100 shadow shadow-gray-400 rounded-lg hover:-translate-y-1 cursor-pointer hover:bg-white duration-200'
           key={event.id}>
 
             <h2 className='font-semibold text-lg truncate max-w-[90%]'>{event?.title}</h2>
@@ -92,7 +92,7 @@ const Events = () => {
                 <span>{event?.duration} minutes</span> | 
               <span> {event?.isPrivate ? "Private" : "Public"}</span>
               </div>
-              <span>{event?._count.bookings} bookings</span>
+              <span><b>{event?._count.bookings}</b> bookings</span>
             </div>
 
             <p className='truncate max-w-[90%] py-2'>{event?.description}</p>

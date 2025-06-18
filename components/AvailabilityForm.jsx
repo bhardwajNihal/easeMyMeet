@@ -84,8 +84,8 @@ const AvailabilityForm = ({ initialAvailability }) => {
                                 {isAvailable && <div className='flex gap-2 items-center sm:ml-4'>
                                     <span className='hidden sm:block'> | </span>
                                     <span className='text-nowrap text-gray-700 text-xs sm:text-sm'>Time range:</span>
-                                    <Input {...register(`${day}.startTime`)} className={`border border-gray-400 bg-white`} type={"time"} /> <span className='text-sm text-gray-600'>to</span>
-                                    <Input {...register(`${day}.endTime`)} className={`border border-gray-400 bg-white`} type={"time"} />
+                                    <Input {...register(`${day}.startTime`)} className={`border border-gray-400 bg-gray-100`} type={"time"} /> <span className='text-sm text-gray-600'>to</span>
+                                    <Input {...register(`${day}.endTime`)} className={`border border-gray-400 bg-gray-100`} type={"time"} />
 
                                 </div>}
                             </div>
@@ -97,7 +97,7 @@ const AvailabilityForm = ({ initialAvailability }) => {
 
             <div >
                 <div className='flex items-center gap-4'>
-                    <label className='flex gap-1 items-center'><span>Time gap (mins)</span> <Info size={"18px"} /></label>
+                    <label className='flex gap-1 items-center'><span>Minimum Time gap<br />between bookings (mins)</span></label>
                     <Input
                         type={"number"}
                         {...register("timeGap", { valueAsNumber: true })}

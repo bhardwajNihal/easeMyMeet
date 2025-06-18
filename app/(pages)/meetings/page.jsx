@@ -6,7 +6,7 @@ import React from 'react'
 const Meetings = () => { 
 
   return (
-    <div className='p-6'>
+    <div className='p-6 mb-20'>
         <h2 className='text-3xl sm:text-4xl font-black text-cyan-600 mb-4'>Meetings</h2>
 
          <Tabs defaultValue="upcoming">

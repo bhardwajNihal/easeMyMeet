@@ -32,12 +32,12 @@ const Header = async () => {
         <SignedIn>
 
           <Link href={"/dashboard"}>
-            <button className="py-2 px-6 text-blue-700 hover:underline cursor-pointer">Dashboard</button>
+            <button className="py-2 px-6 text-cyan-500 hover:underline cursor-pointer hidden sm:block">Dashboard</button>
           </Link>
 
           <Link href={"/events?create=true"}>
             <Button
-              className={"bg-cyan-300 hover:bg-cyan-400 text-blue-800"}>
+              className={"bg-cyan-300/80 hover:bg-cyan-400 text-blue-800"}>
               <PenBox />Add Event
             </Button>
           </Link>

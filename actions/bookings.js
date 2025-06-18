@@ -4,6 +4,9 @@ import clerkClient from "@clerk/clerk-sdk-node";
 import {google} from "googleapis"
 
 export async function createBooking(bookingData) {
+
+    // no user auth check
+        // unauthorized user who visit the public profile page can book event 
     
   try {
       // check if event exists

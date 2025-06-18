@@ -1,3 +1,15 @@
+
+# easeMyMeet
+    - A full stack calendly clone
+    - that lets user to efectively manage meetings
+    - it lets user to : 
+        - create events i.e. the basis and describing the agenda for the meeting
+        - expose public profile to let others book public events with the admin
+        - cancel meetings
+        - set custom availability, with days and time slots
+        - google calendar api integration to add booked meetings info to the calendar and send a gmail to notify for the upcoming meetings
+        - notification for the cancelled meetings as well
+
 # Project setup
 
     - initialize a nextjs project
@@ -29,6 +41,10 @@
     # Adding server actions for
     - user entry, update username
     - create, delete, fetch events
+
+    # public and private routes overview
+    - /dashboard is for the logged-in owner to manage their profile, events, availability, etc.
+    - /[username] is a read-only public version of admin profile.
 
     - complex logic to fetch user availability, i.e. time slots for the respective available days that user set for other to book meetings
     - server action to update availbality
