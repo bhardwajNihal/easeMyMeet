@@ -9,7 +9,6 @@ import {
   parseISO,
   startOfDay,
 } from "date-fns";
-import { FaPersonWalkingDashedLineArrowRight } from "react-icons/fa6";
 
 export async function getUserAvailability() {
   try {
