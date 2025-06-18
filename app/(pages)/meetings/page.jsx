@@ -1,12 +1,9 @@
-import { getMeetings } from '@/actions/meetings'
+
 import MeetingsList from '@/components/meetingsList'
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs'
 import React from 'react'
 
-const Meetings = async() => { 
-
-  const upcomingMeetings = await getMeetings("upcoming");
-  const pastMeetings = await getMeetings("past");
+const Meetings = () => { 
 
   return (
     <div className='p-6'>
@@ -18,10 +15,10 @@ const Meetings = async() => {
           <TabsTrigger value="past">past</TabsTrigger>
         </TabsList>
         <TabsContent value="upcoming">
-          <MeetingsList meetings={upcomingMeetings} type={"upcoming"}/>
+          <MeetingsList type={"upcoming"}/>
         </TabsContent>
         <TabsContent value="past">
-          <MeetingsList meetings={pastMeetings} type={"past"}/>
+          <MeetingsList type={"past"}/>
         </TabsContent>
       </Tabs>
     </div>
