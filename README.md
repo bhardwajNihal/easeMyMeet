@@ -91,5 +91,6 @@
     - fetching existing booked meetings
     - cancelling existing meeting, with deleting calendar entry as well.
 
-
+    #Deployment 
+    - add a script --> "postinstall" : "prisma generate"
 
