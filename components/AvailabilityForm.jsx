@@ -5,10 +5,8 @@ import React, { useEffect } from 'react'
 import { Controller, useForm } from 'react-hook-form';
 import { Checkbox } from './ui/checkbox';
 import { Input } from './ui/input';
-import { Info } from 'lucide-react';
 import useFetch from '@/customHooks/useFetch';
 import { updateAvailability } from '@/actions/availability';
-import { MdSecurityUpdateWarning } from 'react-icons/md';
 import { toast } from 'sonner';
 import { ClipLoader } from 'react-spinners';
 

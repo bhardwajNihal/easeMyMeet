@@ -8,8 +8,7 @@ import { DialogTitle } from "@radix-ui/react-dialog"
 import { useSearchParams } from "next/navigation"
 import { useRouter } from "next/navigation"
 import AddEventForm from "./addEventForm"
-import useFetch from "@/customHooks/useFetch"
-import { getAllEvents } from "@/actions/events"
+
 
 export function AddEventDrawer({reFetchEvents}) {
 

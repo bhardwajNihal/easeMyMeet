@@ -2,10 +2,9 @@
 import { BarChart2, Calendar, Clock10 } from 'lucide-react'
 import { MdPeople } from "react-icons/md";
 
-import React, { useEffect, useState } from 'react'
 import { usePathname, useRouter } from 'next/navigation';
 import { useUser } from '@clerk/nextjs';
-import { ClimbingBoxLoader, ClipLoader, ClockLoader } from "react-spinners"
+import { ClockLoader } from "react-spinners"
 
 const PageLayout = ({ children }) => {
 

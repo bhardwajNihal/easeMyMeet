@@ -1,3 +1,4 @@
+"use client"
 import { eventSchema } from '@/zodSchemas/eventSchema';
 import React, { useEffect } from 'react'
 import { Controller, useForm } from 'react-hook-form'
