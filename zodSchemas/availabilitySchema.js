@@ -1,6 +1,4 @@
-import { DaysOfWeek } from "@prisma/client";
-
-const { z } = require("zod");
+import { z } from "zod";
 
 export const daySchema = z
   .object({
