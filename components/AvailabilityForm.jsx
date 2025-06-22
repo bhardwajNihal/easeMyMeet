@@ -110,7 +110,7 @@ const AvailabilityForm = ({ initialAvailability }) => {
             <button
             disabled={updating}
             type="submit" className="px-4 py-2 mt-2 bg-cyan-300 hover:bg-cyan-400 cursor-pointer rounded">
-                {updating ? <ClipLoader size={"15px"} color='darkblue'/> : ""} Save Availability
+                {updating ? <ClipLoader size={"15px"} color='darkblue'/> : ""} Update Availability
             </button>
         </form>
     )

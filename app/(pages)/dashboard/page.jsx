@@ -65,7 +65,7 @@ const Dashboard = () => {
 
 
         </div>
-          : <p>No upcoming meetings.</p>
+          : <p className='text-sm text-gray-400'>No upcoming meetings.</p>
         }
       </div>
 
