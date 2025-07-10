@@ -2,7 +2,7 @@ import React from 'react'
 
 const PrivacyPolicy = () => {
     return (
-        <div>
+        <div className="pt-20 pl-8 sm:pl-16">
             <p>
                 <b>Welcome to EaseMyMeet!</b> <br />Your privacy is important to us. This Privacy Policy explains how we collect, use, and protect your personal information when you use our services.
 
