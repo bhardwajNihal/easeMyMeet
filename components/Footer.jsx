@@ -1,8 +1,13 @@
+"use client"
 import React from 'react'
 import { Github, Linkedin } from 'lucide-react'
 import { FaXTwitter } from "react-icons/fa6";
+import { useRouter } from 'next/navigation';
 
 const Footer = () => {
+
+  const router = useRouter();
+
   return (
     <footer className="h-20 border-t border-cyan-200 flex flex-col justify-center items-center text-sm gap-2 bg-gradient-to-r from-transparent via-cyan-200 to-transparent">
         <div className="flex gap-2 sm:gap-6 justify-center items-center">
@@ -12,6 +17,9 @@ const Footer = () => {
           <a target="_blank" href="https://www.linkedin.com/in/nihal-bhardwaj-8397212b8/"><Linkedin size={"18px"} className="hover:text-blue-600"/></a>
         </div>
         <p className='text-center'>© 2025 easyMyMeet. All rights reserved.</p>
+        <p
+        onClick={() => router.push("/privacy-policy")}
+        className='text-xs text-blue-500 hover:underline cursor-pointer'>Privacy Policy</p>
     </footer>
   )
 }
